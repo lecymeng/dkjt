@@ -4,3 +4,9 @@
 /.idea/libraries
 .DS_Store
 /build
+.settings/org.eclipse.buildship.core.prefs
+.vscode/settings.json
+.idea
+dkjt.iml
+app/app.iml
+navigationDrawer/navigationDrawer.iml
