@@ -1,284 +1,279 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="#EDECEA"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:minHeight="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:layout_below="@+id/statusBar">
-        <ImageView
-            android:id="@+id/action_bar_back"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@drawable/ic_actionbar_back_normal"
-            />
-        <TextView
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:paddingLeft="20dp"
-            android:textSize="22dp"
-            android:textColor="@android:color/white"
-            android:text="关于"
-
-            />
-    </android.support.v7.widget.Toolbar>
-
-    <ScrollView
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#EDECEA"
+  android:orientation="vertical">
+  
+  <android.support.v7.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/statusBar"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize">
+    
+    <ImageView
+      android:id="@+id/action_bar_back"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:src="@drawable/ic_actionbar_back_normal" />
+    
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:paddingLeft="20dp"
+      android:text="关于"
+      android:textColor="@android:color/white"
+      android:textSize="22dp" />
+  </android.support.v7.widget.Toolbar>
+  
+  <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    tools:context=".fragments.models.MoreFragment">
+    
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:padding="20dp">
+      
+      <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        tools:context=".fragments.models.MoreFragment">
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="应用版本"
+        android:textColor="@android:color/black" />
+      
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/selector_more_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="10dp">
+        
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/ic_launcher" />
+        
         <LinearLayout
-            android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+          
+          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp">
+            android:orientation="horizontal">
+            
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="应用版本"
-                android:paddingTop="10dp"
-                android:textColor="@android:color/black"
-                android:paddingBottom="10dp"
-                />
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="fill_parent"
-                android:layout_height="70dp"
-                android:background="@drawable/selector_more_bg"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                >
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher"
-                    />
-                <LinearLayout
-                    android:layout_height="wrap_content"
-                    android:layout_width="match_parent"
-                    android:orientation="vertical"
-
-                    >
-                    <LinearLayout
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
-                        android:orientation="horizontal"
-
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="10dp"
-                            android:layout_marginBottom="5dp"
-                            android:textColor="@android:color/black"
-
-                            android:text="@string/app_name"/>
-                        <TextView
-                            android:textColor="@android:color/black"
-                            android:id="@+id/more_version_tv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-                            android:text="1.01"/>
-
-                    </LinearLayout>
-                    <TextView
-                        android:textColor="@android:color/darker_gray"
-                        android:layout_width="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_height="wrap_content"
-                        android:textSize="10sp"
-
-                        android:text="Based on Device Frame Generator"/>
-
-                </LinearLayout>
-
-            </LinearLayout>
-
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+              android:paddingLeft="10dp"
+              android:text="@string/app_name"
+              android:textColor="@android:color/black" />
+            
             <TextView
-                android:textColor="@android:color/black"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="开发者"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="20dp"
-                />
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_more_bg"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                >
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/author"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:text="原作： "/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:autoLink="web"
-                        android:layout_centerInParent="true"
-                        android:linksClickable="true"
-                        android:text="@string/dfg_author"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/designer"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:text="设计："/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:autoLink="web"
-                        android:layout_centerInParent="true"
-                        android:linksClickable="true"
-                        android:text="@string/dkjt_design"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/new_dev"
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="10dp"
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:text="开发："/>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="10dp"
-
-                        android:layout_marginBottom="2dp"
-                        android:textColor="@android:color/black"
-                        android:autoLink="web"
-                        android:layout_centerInParent="true"
-                        android:linksClickable="true"
-                        android:text="@string/dkjt_dev"/>
-                </LinearLayout>
-
-
-
-            </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="素材征集 "
-                android:paddingTop="10dp"
-                android:textColor="@android:color/black"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="20dp"
-                />
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_more_bg"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                >
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:text="文件格式：PSD、TIFF、PNG"
-                    />
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_marginTop="5dp"
-
-                    android:text="图片规格：不能低于设备自身分辨率"/>
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="10dp"
-                    android:layout_marginTop="5dp"
-                    android:text="特别说明：如需提供 PNG，请确保图片背景是透明的，且手机正面没有屏幕眩光。"/>
-
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:paddingLeft="10dp" android:text="联系邮箱：celian@sspai.com"/>
-            </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="问题反馈 "
-                android:paddingTop="10dp"
-                android:textColor="@android:color/black"
-                android:paddingBottom="10dp"
-                android:layout_marginTop="20dp"
-                />
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/selector_more_bg"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                >
-                <TextView
-                    android:textColor="@android:color/black"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:autoLink="web"
-                    android:padding="10dp"
-                    android:text="http://weibo.com/amyths"/>
-            </LinearLayout>
-
-
+              android:id="@+id/more_version_tv"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="1.01"
+              android:textColor="@android:color/black" />
+          </LinearLayout>
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="Based on Device Frame Generator"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="10sp" />
         </LinearLayout>
-    </ScrollView>
-
-
+      </LinearLayout>
+      
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="开发者"
+        android:textColor="@android:color/black" />
+      
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_more_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="10dp">
+        
+        <LinearLayout
+          android:id="@+id/author"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="原作： "
+            android:textColor="@android:color/black" />
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="2dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:paddingTop="10dp"
+            android:text="@string/dfg_author"
+            android:textColor="@android:color/black" />
+        </LinearLayout>
+        
+        <LinearLayout
+          android:id="@+id/designer"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="设计："
+            android:textColor="@android:color/black" />
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="2dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:paddingTop="10dp"
+            android:text="@string/dkjt_design"
+            android:textColor="@android:color/black" />
+        </LinearLayout>
+        
+        <LinearLayout
+          android:id="@+id/new_dev"
+          android:layout_width="fill_parent"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="开发："
+            android:textColor="@android:color/black" />
+          
+          <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="2dp"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:paddingTop="10dp"
+            android:text="@string/dkjt_dev"
+            android:textColor="@android:color/black" />
+        </LinearLayout>
+      </LinearLayout>
+      
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="素材征集 "
+        android:textColor="@android:color/black" />
+      
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_more_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="10dp">
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="10dp"
+          android:paddingLeft="10dp"
+          android:text="文件格式：PSD、TIFF、PNG"
+          android:textColor="@android:color/black" />
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:paddingLeft="10dp"
+          android:text="图片规格：不能低于设备自身分辨率"
+          android:textColor="@android:color/black" />
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:paddingLeft="10dp"
+          android:text="特别说明：如需提供 PNG，请确保图片背景是透明的，且手机正面没有屏幕眩光。"
+          android:textColor="@android:color/black" />
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="5dp"
+          android:layout_marginBottom="10dp"
+          android:paddingLeft="10dp"
+          android:text="联系邮箱：celian@sspai.com"
+          android:textColor="@android:color/black" />
+      </LinearLayout>
+      
+      <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:text="问题反馈 "
+        android:textColor="@android:color/black" />
+      
+      <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_more_bg"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="10dp">
+        
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:autoLink="web"
+          android:padding="10dp"
+          android:text="http://weibo.com/amyths"
+          android:textColor="@android:color/black" />
+      </LinearLayout>
+    </LinearLayout>
+  </ScrollView>
 </LinearLayout>
