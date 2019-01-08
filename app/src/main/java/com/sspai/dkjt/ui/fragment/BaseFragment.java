@@ -17,7 +17,7 @@ public class BaseFragment extends Fragment {
   Context activityContext;
 
   @Override
-  public void onCreate(Bundle savedInstanceState) {
+  public void onCreate (Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     activityContext = getActivity();
 
@@ -28,19 +28,19 @@ public class BaseFragment extends Fragment {
   }
 
   @Override
-  public void onResume() {
+  public void onResume () {
     super.onResume();
     bus.register(this);
   }
 
   @Override
-  public void onPause() {
+  public void onPause () {
     bus.unregister(this);
     super.onPause();
   }
 
   @Override
-  public void onViewCreated(View view, Bundle savedInstanceState) {
+  public void onViewCreated (View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     ButterKnife.inject(this, view);
   }

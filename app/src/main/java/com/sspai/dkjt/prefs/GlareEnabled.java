@@ -25,6 +25,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
  * Identifies the user preference of whether glare should be drawn on the
  * screenshots or not.
  */
-@Qualifier @Retention(RUNTIME)
-public @interface GlareEnabled {
-}
+@Qualifier
+@Retention(RUNTIME)
+public @interface GlareEnabled {}

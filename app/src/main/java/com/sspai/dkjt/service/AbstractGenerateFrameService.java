@@ -33,32 +33,29 @@ import com.sspai.dkjt.ui.activity.MainActivity;
 
 import javax.inject.Inject;
 
-public abstract class AbstractGenerateFrameService extends IntentService
-    implements DeviceFrameGenerator.Callback {
+public abstract class AbstractGenerateFrameService extends IntentService implements DeviceFrameGenerator.Callback {
   static final int DFG_NOTIFICATION_ID = 1;
   public static final String KEY_EXTRA_DEVICE = "KEY_EXTRA_DEVICE";
 
   @Inject NotificationManager notificationManager;
   @Inject Bus bus;
 
-  @InjectExtra(KEY_EXTRA_DEVICE)
-  Device device;
+  @InjectExtra(KEY_EXTRA_DEVICE) Device device;
   NotificationCompat.Builder notificationBuilder;
 
-  public AbstractGenerateFrameService(String name) {
+  public AbstractGenerateFrameService (String name) {
     super(name);
   }
 
   @Override
-  public void onCreate() {
+  public void onCreate () {
     super.onCreate();
     ((AppInfo) getApplication()).inject(this);
   }
 
   @Override
-  protected void onHandleIntent(Intent intent) {
+  protected void onHandleIntent (Intent intent) {
     Dart.inject(this, intent.getExtras());
-
   }
 
   /**
@@ -69,22 +66,20 @@ public abstract class AbstractGenerateFrameService extends IntentService
    * @param extra Extra information to show to user.
    */
   @Override
-  public void failedImage(String title, String text, String extra) {
+  public void failedImage (String title, String text, String extra) {
 
-    Notification notification = new NotificationCompat.Builder(this) //
+    Notification notification = new NotificationCompat.Builder(this)
         .setTicker(title)
         .setContentTitle(title)
         .setContentText(text)
-        .setStyle(new NotificationCompat.BigTextStyle() //
-                .setBigContentTitle(title) //
-                .bigText(text) //
-                .setSummaryText(extra)
-        )
+        .setStyle(new NotificationCompat.BigTextStyle()
+            .setBigContentTitle(title)
+            .bigText(text)
+            .setSummaryText(extra))
         .setSmallIcon(R.drawable.ic_action_error)
         .setWhen(System.currentTimeMillis())
         .setAutoCancel(true)
-        .setContentIntent(
-            PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
+        .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
         .build();
     notificationManager.notify(DFG_NOTIFICATION_ID, notification);
   }

@@ -1,6 +1,5 @@
 package com.sspai.dkjt.ui.activity;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
@@ -13,17 +12,14 @@ import com.sspai.dkjt.prefs.AppContainer;
 
 import javax.inject.Inject;
 
-@SuppressLint("Registered")
 public class BaseActivity extends Activity {
-
   @Inject Bus bus;
-  @Inject
-  AppContainer appContainer;
+  @Inject AppContainer appContainer;
 
   private ViewGroup container;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate (Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     AppInfo app = AppInfo.get(this);
@@ -34,23 +30,23 @@ public class BaseActivity extends Activity {
     container = appContainer.get(this, app);
   }
 
-  void inflateView(int layoutId) {
+  void inflateView (int layoutId) {
     getLayoutInflater().inflate(layoutId, container);
     injectViews();
   }
 
-  private void injectViews() {
+  private void injectViews () {
     ButterKnife.inject(this);
   }
 
   @Override
-  protected void onResume() {
+  protected void onResume () {
     super.onResume();
     bus.register(this);
   }
 
   @Override
-  protected void onPause() {
+  protected void onPause () {
     bus.unregister(this);
     super.onPause();
   }

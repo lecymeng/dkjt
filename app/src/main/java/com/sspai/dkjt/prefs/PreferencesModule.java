@@ -20,23 +20,31 @@ public class PreferencesModule {
   private static final String KEY_PREF_OPTION_SHADOW = "KEY_PREF_OPTION_SHADOW";
   private static final String KEY_FIRST_RUN = "KEY_FIRST_RUN";
 
-  @Provides @Singleton @DefaultDevice
-  StringPreference provideDefaultDevice(SharedPreferences sharedPreferences) {
+  @Provides
+  @Singleton
+  @DefaultDevice
+  StringPreference provideDefaultDevice (SharedPreferences sharedPreferences) {
     return new StringPreference(sharedPreferences, KEY_PREF_DEFAULT_DEVICE_ID, DEFAULT_DEVICE_ID);
   }
 
-  @Provides @Singleton @GlareEnabled
-  BooleanPreference provideGlareEnabled(SharedPreferences sharedPreferences) {
+  @Provides
+  @Singleton
+  @GlareEnabled
+  BooleanPreference provideGlareEnabled (SharedPreferences sharedPreferences) {
     return new BooleanPreference(sharedPreferences, KEY_PREF_OPTION_GLARE, DEFAULT_GLARE_ENABLED);
   }
 
-  @Provides @Singleton @ShadowEnabled
-  BooleanPreference provideShadowEnabled(SharedPreferences sharedPreferences) {
+  @Provides
+  @Singleton
+  @ShadowEnabled
+  BooleanPreference provideShadowEnabled (SharedPreferences sharedPreferences) {
     return new BooleanPreference(sharedPreferences, KEY_PREF_OPTION_SHADOW, DEFAULT_SHADOW_ENABLED);
   }
 
-  @Provides @Singleton @FirstRun
-  BooleanPreference provideFirstRun(SharedPreferences sharedPreferences) {
+  @Provides
+  @Singleton
+  @FirstRun
+  BooleanPreference provideFirstRun (SharedPreferences sharedPreferences) {
     return new BooleanPreference(sharedPreferences, KEY_FIRST_RUN, true);
   }
 }

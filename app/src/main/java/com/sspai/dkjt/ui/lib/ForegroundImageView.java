@@ -4,19 +4,18 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 import com.sspai.dkjt.R;
 
-
-public class ForegroundImageView extends ImageView {
+public class ForegroundImageView extends AppCompatImageView {
   private Drawable foreground;
 
-  public ForegroundImageView(Context context) {
+  public ForegroundImageView (Context context) {
     this(context, null);
   }
 
-  public ForegroundImageView(Context context, AttributeSet attrs) {
+  public ForegroundImageView (Context context, AttributeSet attrs) {
     super(context, attrs);
 
     TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ForegroundImageView);
@@ -33,7 +32,7 @@ public class ForegroundImageView extends ImageView {
    *
    * @param drawableResId The drawable resource to be drawn on top of the children.
    */
-  public void setForegroundResource(int drawableResId) {
+  public void setForegroundResource (int drawableResId) {
     setForeground(getContext().getResources().getDrawable(drawableResId));
   }
 
@@ -43,7 +42,8 @@ public class ForegroundImageView extends ImageView {
    *
    * @param drawable The Drawable to be drawn on top of the children.
    */
-  public void setForeground(Drawable drawable) {
+  @Override
+  public void setForeground (Drawable drawable) {
     if (foreground == drawable) {
       return;
     }
@@ -64,23 +64,29 @@ public class ForegroundImageView extends ImageView {
     invalidate();
   }
 
-  @Override protected boolean verifyDrawable(Drawable who) {
+  @Override
+  protected boolean verifyDrawable (Drawable who) {
     return super.verifyDrawable(who) || (who == foreground);
   }
 
-  @Override public void jumpDrawablesToCurrentState() {
+  @Override
+  public void jumpDrawablesToCurrentState () {
     super.jumpDrawablesToCurrentState();
-    if (foreground != null) foreground.jumpToCurrentState();
+    if (foreground != null) {
+      foreground.jumpToCurrentState();
+    }
   }
 
-  @Override protected void drawableStateChanged() {
+  @Override
+  protected void drawableStateChanged () {
     super.drawableStateChanged();
     if (foreground != null && foreground.isStateful()) {
       foreground.setState(getDrawableState());
     }
   }
 
-  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+  @Override
+  protected void onMeasure (int widthMeasureSpec, int heightMeasureSpec) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     if (foreground != null) {
       foreground.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
@@ -88,7 +94,8 @@ public class ForegroundImageView extends ImageView {
     }
   }
 
-  @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+  @Override
+  protected void onSizeChanged (int w, int h, int oldw, int oldh) {
     super.onSizeChanged(w, h, oldw, oldh);
     if (foreground != null) {
       foreground.setBounds(0, 0, w, h);
@@ -96,7 +103,8 @@ public class ForegroundImageView extends ImageView {
     }
   }
 
-  @Override public void draw(Canvas canvas) {
+  @Override
+  public void draw (Canvas canvas) {
     super.draw(canvas);
 
     if (foreground != null) {

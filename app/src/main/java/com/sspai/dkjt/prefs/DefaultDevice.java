@@ -24,6 +24,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * The unique id for the default device as saved by the user.
  */
-@Qualifier @Retention(RUNTIME)
-public @interface DefaultDevice {
-}
+@Qualifier
+@Retention(RUNTIME)
+public @interface DefaultDevice {}

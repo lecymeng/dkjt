@@ -15,26 +15,25 @@ import dagger.Provides;
 
 import javax.inject.Singleton;
 
-@Module(
-    injects = {BaseActivity.class, MainActivity.class, ReceiverActivity.class,DeviceFragment.class, HomeFragment.class},
-    complete = false,
-    library = true)
+@Module(injects = {
+    BaseActivity.class, MainActivity.class, ReceiverActivity.class, DeviceFragment.class, HomeFragment.class
+}, complete = false, library = true)
 public class UiModule {
-    @Provides
-    @Singleton
-    AppContainer provideAppContainer() {
-        return AppContainer.DEFAULT;
-    }
+  @Provides
+  @Singleton
+  AppContainer provideAppContainer () {
+    return AppContainer.DEFAULT;
+  }
 
-    @Provides
-    @Singleton
-    ActivityHierarchyServer provideActivityHierarchyServer() {
-        return ActivityHierarchyServer.NONE;
-    }
+  @Provides
+  @Singleton
+  ActivityHierarchyServer provideActivityHierarchyServer () {
+    return ActivityHierarchyServer.NONE;
+  }
 
-    @Provides
-    @Singleton
-    Picasso providePicasso(@ForApplication Context app) {
-        return new Picasso.Builder(app).build();
-    }
+  @Provides
+  @Singleton
+  Picasso providePicasso (@ForApplication Context app) {
+    return new Picasso.Builder(app).build();
+  }
 }

@@ -38,29 +38,25 @@ import javax.inject.Inject;
 import java.util.ArrayList;
 
 public class GenerateMultipleFramesService extends AbstractGenerateFrameService {
-
   public static final String KEY_EXTRA_SCREENSHOTS = "KEY_EXTRA_SCREENSHOTS";
 
-  @Inject @ShadowEnabled
-  BooleanPreference shadowEnabled;
-  @Inject @GlareEnabled
-  BooleanPreference glareEnabled;
+  @Inject @ShadowEnabled BooleanPreference shadowEnabled;
+  @Inject @GlareEnabled BooleanPreference glareEnabled;
   @Inject Resources resources;
 
   @InjectExtra(KEY_EXTRA_SCREENSHOTS) ArrayList<Uri> imageUris;
   ArrayList<Uri> processedImageUris;
   DeviceFrameGenerator generator;
 
-  public GenerateMultipleFramesService() {
+  public GenerateMultipleFramesService () {
     super("GenerateMultipleFramesService");
   }
 
   @Override
-  protected void onHandleIntent(Intent intent) {
+  protected void onHandleIntent (Intent intent) {
     super.onHandleIntent(intent);
 
-    generator =
-        new DeviceFrameGenerator(this, this, device, shadowEnabled.get(), glareEnabled.get());
+    generator = new DeviceFrameGenerator(this, this, device, shadowEnabled.get(), glareEnabled.get());
 
     notifyStarting();
     processedImageUris = new ArrayList<>();
@@ -70,17 +66,17 @@ public class GenerateMultipleFramesService extends AbstractGenerateFrameService 
     notifyFinished();
   }
 
-  public void notifyStarting() {
+  public void notifyStarting () {
     Intent nullIntent = new Intent(this, MainActivity.class);
     nullIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    notificationBuilder = new NotificationCompat.Builder(this).setTicker(
-        resources.getString(R.string.screenshot_saving_ticker))
-        .setContentTitle(resources.getString(R.string.screenshot_saving_title))
-        .setSmallIcon(R.drawable.ic_actionbar_logo)
-        .setContentIntent(PendingIntent.getActivity(this, 0, nullIntent, 0))
-        .setProgress(0, 0, true)
-        .setWhen(System.currentTimeMillis());
+    notificationBuilder =
+        new NotificationCompat.Builder(this).setTicker(resources.getString(R.string.screenshot_saving_ticker))
+            .setContentTitle(resources.getString(R.string.screenshot_saving_title))
+            .setSmallIcon(R.drawable.ic_actionbar_logo)
+            .setContentIntent(PendingIntent.getActivity(this, 0, nullIntent, 0))
+            .setProgress(0, 0, true)
+            .setWhen(System.currentTimeMillis());
 
     Notification n = notificationBuilder.build();
     n.flags |= Notification.FLAG_NO_CLEAR;
@@ -88,25 +84,24 @@ public class GenerateMultipleFramesService extends AbstractGenerateFrameService 
   }
 
   @Override
-  public void startingImage(Bitmap screenshot) {
+  public void startingImage (Bitmap screenshot) {
     // Don't really do anything
   }
 
   @Override
-  public void doneImage(Uri imageUri) {
+  public void doneImage (Uri imageUri) {
     processedImageUris.add(imageUri);
     notificationBuilder.setContentText(
-        getResources().getString(R.string.processing_image, processedImageUris.size(),
-            imageUris.size())
-    ).setProgress(imageUris.size(), processedImageUris.size(), false);
+        getResources().getString(R.string.processing_image, processedImageUris.size(), imageUris.size()))
+        .setProgress(imageUris.size(), processedImageUris.size(), false);
     notificationManager.notify(DFG_NOTIFICATION_ID, notificationBuilder.build());
   }
 
-  public void notifyFinished() {
+  public void notifyFinished () {
     Handler handler = new Handler(Looper.getMainLooper());
     handler.post(new Runnable() {
       @Override
-      public void run() {
+      public void run () {
         bus.post(new Events.MultipleImagesProcessed(device, processedImageUris));
       }
     });
@@ -115,9 +110,7 @@ public class GenerateMultipleFramesService extends AbstractGenerateFrameService 
       return;
     }
 
-    String text =
-        resources.getString(R.string.multiple_screenshots_saved, processedImageUris.size(),
-            device.name());
+    String text = resources.getString(R.string.multiple_screenshots_saved, processedImageUris.size(), device.name());
 
     Intent viewImagesIntent = new Intent(Intent.ACTION_VIEW);
     viewImagesIntent.setData(processedImageUris.get(0));

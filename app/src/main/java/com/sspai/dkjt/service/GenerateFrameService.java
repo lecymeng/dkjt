@@ -39,33 +39,29 @@ import javax.inject.Inject;
 
 /** A service that generates our frames. */
 public class GenerateFrameService extends AbstractGenerateFrameService {
-
   public static final String KEY_EXTRA_SCREENSHOT = "KEY_EXTRA_SCREENSHOT";
 
-  @Inject @ShadowEnabled
-  BooleanPreference shadowEnabled;
-  @Inject @GlareEnabled
-  BooleanPreference glareEnabled;
+  @Inject @ShadowEnabled BooleanPreference shadowEnabled;
+  @Inject @GlareEnabled BooleanPreference glareEnabled;
   @Inject Resources resources;
 
   @InjectExtra(KEY_EXTRA_SCREENSHOT) Uri screenshotUri;
   DeviceFrameGenerator generator;
 
-  public GenerateFrameService() {
+  public GenerateFrameService () {
     super("GenerateFrameService");
   }
 
   @Override
-  protected void onHandleIntent(Intent intent) {
+  protected void onHandleIntent (Intent intent) {
     super.onHandleIntent(intent);
 
-    generator =
-        new DeviceFrameGenerator(this, this, device, shadowEnabled.get(), glareEnabled.get());
+    generator = new DeviceFrameGenerator(this, this, device, shadowEnabled.get(), glareEnabled.get());
     generator.generateFrame(screenshotUri);
   }
 
   @Override
-  public void startingImage(Bitmap screenshot) {
+  public void startingImage (Bitmap screenshot) {
     // Create the large notification icon
     int imageWidth = screenshot.getWidth();
     int imageHeight = screenshot.getHeight();
@@ -91,15 +87,15 @@ public class GenerateFrameService extends AbstractGenerateFrameService {
     nullIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
     notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-    notificationBuilder = new NotificationCompat.Builder(this).setTicker(
-        resources.getString(R.string.screenshot_saving_ticker))
-        .setContentTitle(resources.getString(R.string.screenshot_saving_title))
-        .setSmallIcon(R.drawable.ic_actionbar_logo)
-        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(preview))
-        .setContentIntent(PendingIntent.getActivity(this, 0, nullIntent, 0))
-        .setWhen(System.currentTimeMillis())
-        .setProgress(0, 0, true)
-        .setLargeIcon(croppedIcon);
+    notificationBuilder =
+        new NotificationCompat.Builder(this).setTicker(resources.getString(R.string.screenshot_saving_ticker))
+            .setContentTitle(resources.getString(R.string.screenshot_saving_title))
+            .setSmallIcon(R.drawable.ic_actionbar_logo)
+            .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(preview))
+            .setContentIntent(PendingIntent.getActivity(this, 0, nullIntent, 0))
+            .setWhen(System.currentTimeMillis())
+            .setProgress(0, 0, true)
+            .setLargeIcon(croppedIcon);
 
     Notification n = notificationBuilder.build();
     n.flags |= Notification.FLAG_NO_CLEAR;
@@ -107,11 +103,11 @@ public class GenerateFrameService extends AbstractGenerateFrameService {
   }
 
   @Override
-  public void doneImage(final Uri imageUri) {
+  public void doneImage (final Uri imageUri) {
     Handler handler = new Handler(Looper.getMainLooper());
     handler.post(new Runnable() {
       @Override
-      public void run() {
+      public void run () {
         bus.post(new Events.SingleImageProcessed(device, imageUri));
       }
     });
@@ -122,14 +118,12 @@ public class GenerateFrameService extends AbstractGenerateFrameService {
     sharingIntent.putExtra(Intent.EXTRA_STREAM, imageUri);
     Intent chooserIntent = Intent.createChooser(sharingIntent, null);
     chooserIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-    notificationBuilder.addAction(R.drawable.ic_action_share,
-        getResources().getString(R.string.share),
+    notificationBuilder.addAction(R.drawable.ic_action_share, getResources().getString(R.string.share),
         PendingIntent.getActivity(this, 0, chooserIntent, PendingIntent.FLAG_CANCEL_CURRENT));
 
     // Create the intent to let the user rate the app
     Intent rateIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(ConfigString.MARKET_URL));
-    notificationBuilder.addAction(R.drawable.ic_action_rate,
-        getResources().getString(R.string.rate),
+    notificationBuilder.addAction(R.drawable.ic_action_rate, getResources().getString(R.string.rate),
         PendingIntent.getActivity(this, 0, rateIntent, PendingIntent.FLAG_CANCEL_CURRENT));
 
     // Create the intent to show the screenshot in gallery

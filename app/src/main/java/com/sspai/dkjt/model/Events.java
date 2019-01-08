@@ -5,15 +5,14 @@ import com.sspai.dkjt.model.Device;
 import java.util.List;
 
 public class Events {
-
-  private Events() {
+  private Events () {
     // no instances
   }
 
   public static class GlareSettingUpdated {
     public final boolean isEnabled;
 
-    public GlareSettingUpdated(boolean isEnabled) {
+    public GlareSettingUpdated (boolean isEnabled) {
       this.isEnabled = isEnabled;
     }
   }
@@ -21,7 +20,7 @@ public class Events {
   public static class ShadowSettingUpdated {
     public final boolean isEnabled;
 
-    public ShadowSettingUpdated(boolean isEnabled) {
+    public ShadowSettingUpdated (boolean isEnabled) {
       this.isEnabled = isEnabled;
     }
   }
@@ -29,7 +28,7 @@ public class Events {
   public static class DefaultDeviceUpdated {
     public final Device newDevice;
 
-    public DefaultDeviceUpdated(Device newDevice) {
+    public DefaultDeviceUpdated (Device newDevice) {
       this.newDevice = newDevice;
     }
   }
@@ -38,7 +37,7 @@ public class Events {
     public final Device device;
     public final Uri uri;
 
-    public SingleImageProcessed(Device device, Uri uri) {
+    public SingleImageProcessed (Device device, Uri uri) {
       this.device = device;
       this.uri = uri;
     }
@@ -48,7 +47,7 @@ public class Events {
     public final Device device;
     public final List<Uri> uriList;
 
-    public MultipleImagesProcessed(Device device, List<Uri> uriList) {
+    public MultipleImagesProcessed (Device device, List<Uri> uriList) {
       this.device = device;
       this.uriList = uriList;
     }

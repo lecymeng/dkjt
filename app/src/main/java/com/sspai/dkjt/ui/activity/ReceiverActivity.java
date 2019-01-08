@@ -17,13 +17,11 @@ import java.util.ArrayList;
 
 /** A receiver activity, that is registered to receive images. */
 public class ReceiverActivity extends BaseActivity {
-  @Inject
-  DeviceProvider deviceProvider;
-  @Inject @DefaultDevice
-  StringPreference defaultDevice;
+  @Inject DeviceProvider deviceProvider;
+  @Inject @DefaultDevice StringPreference defaultDevice;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate (Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
     Intent intent = getIntent();
@@ -40,7 +38,7 @@ public class ReceiverActivity extends BaseActivity {
   }
 
   /** Handle an intent that provides a single image. */
-  private void handleReceivedSingleImage(Intent i) {
+  private void handleReceivedSingleImage (Intent i) {
     Uri imageUri = i.getParcelableExtra(Intent.EXTRA_STREAM);
     Device device = deviceProvider.getDefaultDevice();
     Intent intent = new Intent(this, GenerateFrameService.class);
@@ -50,7 +48,7 @@ public class ReceiverActivity extends BaseActivity {
   }
 
   /** Handle an intent that provides multiple images. */
-  void handleReceivedMultipleImages(Intent i) {
+  void handleReceivedMultipleImages (Intent i) {
     ArrayList<Uri> imageUris = i.getParcelableArrayListExtra(Intent.EXTRA_STREAM);
     Device device = deviceProvider.getDefaultDevice();
     Intent intent = new Intent(this, GenerateMultipleFramesService.class);
