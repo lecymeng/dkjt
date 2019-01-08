@@ -15,8 +15,8 @@ import android.os.Bundle;
 
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.TypedValue;
 import android.view.MenuItem;
@@ -45,7 +45,7 @@ import java.util.List;
  * @author created by neokree
  */
 @SuppressLint("InflateParams")
-public abstract class NavigationDrawer<Fragment> extends ActionBarActivity implements SectionListener {
+public abstract class NavigationDrawer<Fragment> extends AppCompatActivity implements SectionListener {
     public static final int BOTTOM_SECTION_START = 100;
     private DrawerLayout layout;
     private ActionBar actionBar;
@@ -158,10 +158,6 @@ public abstract class NavigationDrawer<Fragment> extends ActionBarActivity imple
     };
 
     @Override
-    /**
-     * Do not Override this method!!! <br>
-     * Use init() instead
-     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_material_navigation_drawer);

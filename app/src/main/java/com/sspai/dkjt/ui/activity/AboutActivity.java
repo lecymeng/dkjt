@@ -3,11 +3,10 @@ package com.sspai.dkjt.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import butterknife.ButterKnife;
 import butterknife.InjectView;
 import com.sspai.dkjt.R;
@@ -18,7 +17,7 @@ import com.sspai.dkjt.R;
  * @author Makoshan
  * @date 2015-01-16 10:34
  */
-public class AboutActivity extends ActionBarActivity implements View.OnClickListener{
+public class AboutActivity extends AppCompatActivity implements View.OnClickListener{
     @InjectView(R.id.action_bar_back)
     ImageView btnBack;
     @InjectView(R.id.author)
