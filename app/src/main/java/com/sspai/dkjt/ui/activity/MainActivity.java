@@ -9,7 +9,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.Toast;
-import butterknife.ButterKnife;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.f2prateek.dart.Dart;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -289,11 +288,6 @@ public class MainActivity extends NavigationDrawer implements NavigationDrawerLi
 
   void inflateView (int layoutId) {
     getLayoutInflater().inflate(layoutId, container);
-    injectViews();
-  }
-
-  private void injectViews () {
-    ButterKnife.inject(this);
   }
 
   @Override

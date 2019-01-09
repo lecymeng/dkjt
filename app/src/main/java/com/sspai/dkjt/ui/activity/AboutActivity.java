@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 import com.sspai.dkjt.R;
 
 /**
@@ -18,16 +16,16 @@ import com.sspai.dkjt.R;
  * @date 2015-01-16 10:34
  */
 public class AboutActivity extends AppCompatActivity implements View.OnClickListener {
-  @InjectView(R.id.action_bar_back) ImageView btnBack;
-  @InjectView(R.id.author) LinearLayout btnAuthor;
-  @InjectView(R.id.designer) LinearLayout btnDesign;
-  @InjectView(R.id.new_dev) LinearLayout btnNewDev;
-
   @Override
   protected void onCreate (Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_about);
-    ButterKnife.inject(this);
+
+    ImageView btnBack = findViewById(R.id.action_bar_back);
+    LinearLayout btnAuthor = findViewById(R.id.author);
+    LinearLayout btnDesign = findViewById(R.id.designer);
+    LinearLayout btnNewDev = findViewById(R.id.new_dev);
+
     btnBack.setOnClickListener(this);
     btnAuthor.setOnClickListener(this);
     btnDesign.setOnClickListener(this);

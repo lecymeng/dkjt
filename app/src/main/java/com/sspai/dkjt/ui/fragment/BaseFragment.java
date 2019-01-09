@@ -4,7 +4,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
-import butterknife.ButterKnife;
 import com.f2prateek.dart.Dart;
 
 import com.squareup.otto.Bus;
@@ -42,6 +41,5 @@ public class BaseFragment extends Fragment {
   @Override
   public void onViewCreated (View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
-    ButterKnife.inject(this, view);
   }
 }

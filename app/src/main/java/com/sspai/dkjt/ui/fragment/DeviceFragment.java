@@ -13,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
-import butterknife.InjectView;
-import butterknife.OnClick;
 import com.f2prateek.dart.InjectExtra;
 
 import com.squareup.otto.Subscribe;
@@ -39,8 +37,8 @@ public class DeviceFragment extends BaseFragment {
   @Inject DeviceProvider deviceProvider;
   SharedPreferences sp;
 
-  @InjectView(R.id.iv_device_thumbnail) ImageView deviceThumbnailText;
-  @InjectView(R.id.iv_device_default) ImageView deviceDefaultText;
+  private ImageView deviceThumbnailText;
+  private ImageView deviceDefaultText;
 
   @InjectExtra(EXTRA_DEVICE) Device device;
 
@@ -68,28 +66,38 @@ public class DeviceFragment extends BaseFragment {
   @Override
   public void onViewCreated (View view, Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
+    deviceThumbnailText = view.findViewById(R.id.iv_device_thumbnail);
+    deviceDefaultText = view.findViewById(R.id.iv_device_default);
     picasso.load(Utils.getResourceIdentifierForDrawable(getActivity(), device.getThumbnailResourceName()))
         .fit()
         .centerInside()
         .into(deviceThumbnailText);
     deviceDefaultText.bringToFront();
     deviceDefaultText.setImageResource(isDefault() ? R.drawable.ic_action_star_selected : R.drawable.ic_action_star);
-  }
 
-  @OnClick(R.id.iv_device_default)
-  public void updateDefaultDevice () {
-    if (isDefault()) {
-      return;
-    }
-    deviceProvider.saveDefaultDevice(device);
-    if (device.category() != null) {
+    deviceThumbnailText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick (View v) {
+        getScreenshotImageFromUser();
+      }
+    });
+    deviceDefaultText.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick (View v) {
+        if (isDefault()) {
+          return;
+        }
+        deviceProvider.saveDefaultDevice(device);
+        if (device.category() != null) {
 
-      SharedPreferences.Editor editor = sp.edit();
-      editor.putString("brand", device.category());
-      editor.apply();
-      Toast.makeText(getActivity(), "已设为默认", Toast.LENGTH_LONG).show();
-    }
-    bus.post(new Events.DefaultDeviceUpdated(device));
+          SharedPreferences.Editor editor = sp.edit();
+          editor.putString("brand", device.category());
+          editor.apply();
+          Toast.makeText(getActivity(), "已设为默认", Toast.LENGTH_LONG).show();
+        }
+        bus.post(new Events.DefaultDeviceUpdated(device));
+      }
+    });
   }
 
   @Subscribe
@@ -107,7 +115,6 @@ public class DeviceFragment extends BaseFragment {
     return deviceProvider.getDefaultDevice().id().equals(device.id());
   }
 
-  @OnClick(R.id.iv_device_thumbnail)
   public void getScreenshotImageFromUser () {
     Toast.makeText(getActivity(), "请选择一张手机截图", Toast.LENGTH_LONG).show();
     Intent intent = new Intent();

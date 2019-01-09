@@ -3,7 +3,6 @@ package com.sspai.dkjt.ui.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.ViewGroup;
-import butterknife.ButterKnife;
 import com.f2prateek.dart.Dart;
 
 import com.squareup.otto.Bus;
@@ -32,11 +31,6 @@ public class BaseActivity extends Activity {
 
   void inflateView (int layoutId) {
     getLayoutInflater().inflate(layoutId, container);
-    injectViews();
-  }
-
-  private void injectViews () {
-    ButterKnife.inject(this);
   }
 
   @Override
